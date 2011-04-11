@@ -4,10 +4,12 @@ class User < ActiveRecord::Base
 
   fields do
     name          :string, :required, :unique
-    email_address :email_address, :login => true
+    email_address :email_address, :login => true, :validate => false
     administrator :boolean, :default => false
     timestamps
   end
+
+  has_many :authorizations
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
@@ -25,6 +27,8 @@ class User < ActiveRecord::Base
 
     state :inactive, :default => true
     state :active
+
+    create :authorize, :params => [:name], :become => :active
 
     create :signup, :available_to => "Guest",
       :params => [:name, :email_address, :password, :password_confirmation],
