@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   hobo_user_controller
 
   auto_actions :all, :except => [ :index, :new, :create ]
+  index_action :omniauth_callback
 
   def create
     hobo_create do
@@ -12,6 +13,10 @@ class UsersController < ApplicationController
         redirect_to home_page
       end
     end
+  end
+
+  def omniauth_callback
+    raise request.env["omniauth.auth"].to_yaml
   end
 
 end
