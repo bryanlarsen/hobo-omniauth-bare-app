@@ -14,7 +14,7 @@ To use this application with Twitter authentication:
    specify a Callback URL after indicating you are registering a "Browser"
    application on the application settings page of your Twitter development
    account. Assuming you specify an Application Website such as
-   "http://mysampleapp.heroku.com", you can specify the Callback URL as
+   http://mysampleapp.heroku.com, you can specify the Callback URL as
    the same address, but it will not be used since OmniAuth controls the 
    callback. The setting in Twitter just seems to keep your registration as
    a "Browser" registration. Without the Callback URL set, the registration
