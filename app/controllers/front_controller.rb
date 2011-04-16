@@ -20,6 +20,6 @@ class FrontController < ApplicationController
     if params[:query]
       site_search(params[:query])
     end
-  end
-
+  end    
+  
 end

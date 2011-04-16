@@ -20,11 +20,16 @@ class UsersController < ApplicationController
   end
 
   def omniauth_callback
-    if self.this=Authorization.auth(request.env["omniauth.auth"], current_user)
+    # Try and find a user with matching authorization credentials
+    if self.this = Authorization.auth(request.env["omniauth.auth"], current_user)
       sign_user_in(self.this.user)
     else
-      raise request.env["omniauth.auth"].to_yaml
+      if !request.env["omniauth.auth"].nil?
+        raise request.env["omniauth.auth"].to_yaml
+      else
+        raise request.env["message"].to_yaml
+      end
     end
   end
-
+  
 end
