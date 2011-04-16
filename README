@@ -23,10 +23,23 @@ To use this application with Twitter authentication:
 3) After registering your application, copy your app's Consumer Key and 
    Consumer Secret key into config/initializers/omniauth.rb.
 
-3) Start your app, and then go to /auth/twitter. If you are not already logged
-   in at Twitter, you will see the Twitter Log in page. After successful login,
+3) Start your app. If you have not already created an administrator account,
+   do so. If necessary, you can create an administrator account using the
+   same Name as your Twitter account. Authorization#auth will create a 
+   matching authorization record for your Administrator account, if the names match. 
+   If your Twitter account uses a Name that is not already in your Users table,
+   Authorizations#auth will create a new user with the name provided by 
+   Twitter, and create a matching authorization for it, and then log you in. 
+
+4) Once you've created an administrator account, signout of the application. 
+
+5) From either the Login page or the front#index page, click the "Login with Twitter"
+   (or browse to /auth/twitter). If you are not already logged
+   in at Twitter, you will see the Twitter Log In page. After successful login,
    you will be returned to your application and OmniAuth will create a new user
-   (with a Twitter authentication) and log you in.  
+   (with a Twitter authentication) and log you in. If you are already logged in
+   at Twitter in the same browser, you will not see the Twitter Log In page, and
+   will be immediately signed into the Hobo app. 
    
 
    
