@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 
-  hobo_user_controller
+  hobo_user_controller  
+  
+  # Allow only the omniauth_callback action to skip the condition that
+  # we're logged in. my_login_required is defined in application_controller.rb.
+  skip_before_filter :my_login_required, :only => :omniauth_callback                            
 
   auto_actions :all, :except => [ :index, :new, :create ]
   index_action :omniauth_callback

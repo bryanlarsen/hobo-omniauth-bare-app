@@ -7,3 +7,13 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <set-theme name="clean"/>
+
+<extend tag="login-form">
+  
+  <old-login-form merge/>  
+  <div id="divSocialLoginLinks">
+    <a href="/auth/twitter" class="loginTwitter">Login with Twitter</a>
+    <br/><br/>
+  </div> 
+    
+</extend>
