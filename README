@@ -1,11 +1,45 @@
-This is a bare Hobo app that has VERY rudimentary omniauth support.
+This is a bare Hobo app that has VERY rudimentary OmniAuth support.
 
-To use:
+For more information on OmniAuth, see https://github.com/intridea/omniauth.
 
-1) sign up for twitter app access:  https://dev.twitter.com/apps/new
+The implementation here is partially based on the OmniAuth tutorial at 
+http://blog.railsrumble.com/blog/2010/10/08/intridea-omniauth.
 
-2) put the keys into config/initializers/omniauth.rb
+To use this application with Twitter authentication:
 
-3) start your app, and then go to /auth/twitter.  This will create a
-new user, add twitter authorization to the current user and/or log the
-user in.
+1) Sign up for a Twitter account.
+
+2) Register your application with Twitter at https://dev.twitter.com/apps/new.
+   NOTE: When you register your application, it appears necessary to have to 
+   specify a Callback URL after indicating you are registering a "Browser"
+   application on the application settings page of your Twitter development
+   account. Assuming you specify an Application Website such as
+   http://mysampleapp.heroku.com, you can specify the Callback URL as
+   the same address, but it will not be used since OmniAuth controls the 
+   callback. The setting in Twitter just seems to keep your registration as
+   a "Browser" registration. Without the Callback URL set, the registration
+   seems to default back to "Client". 
+
+3) After registering your application, copy your app's Consumer Key and 
+   Consumer Secret key into config/initializers/omniauth.rb.
+
+3) Start your app. If you have not already created an administrator account,
+   do so. If necessary, you can create an administrator account using the
+   same Name as your Twitter account. Authorization#auth will create a 
+   matching authorization record for your Administrator account, if the names match. 
+   If your Twitter account uses a Name that is not already in your Users table,
+   Authorizations#auth will create a new user with the name provided by 
+   Twitter, and create a matching authorization for it, and then log you in. 
+
+4) Once you've created an administrator account, signout of the application. 
+
+5) From either the Login page or the front#index page, click the "Login with Twitter"
+   (or browse to /auth/twitter). If you are not already logged
+   in at Twitter, you will see the Twitter Log In page. After successful login,
+   you will be returned to your application and OmniAuth will create a new user
+   (with a Twitter authentication) and log you in. If you are already logged in
+   at Twitter in the same browser, you will not see the Twitter Log In page, and
+   will be immediately signed into the Hobo app. 
+   
+
+   

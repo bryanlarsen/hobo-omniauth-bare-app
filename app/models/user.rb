@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
     state :inactive, :default => true
     state :active
 
+    # Called from Authorization#auth to create a new user with the name
+    # supplied by the provider. 
     create :authorize, :params => [:name], :become => :active
 
     create :signup, :available_to => "Guest",
