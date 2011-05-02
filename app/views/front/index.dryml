@@ -24,6 +24,17 @@
     </header>
 
     <section class="content-body">
+
+      <if test="&User.count > 0 && !logged_in?">
+        <h1>Log in</h1>
+        <div id="divFrontLoginForm">
+          <login-form user-model="&User" action="&user_login_path" if="&!logged_in?"/>  
+          <a href="&forgot_password_url" if="&forgot_password_url">
+            <t key="hobo.login.forgot_password">Forgot your password?</t>
+          </a>
+        </div>
+      </if>
+
     </section>
   </content:>
 

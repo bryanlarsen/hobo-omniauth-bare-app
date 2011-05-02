@@ -29,7 +29,7 @@ gem 'sqlite3'
 group :development, :test do
    gem 'ruby-debug19'
 end
-gem "hobo", :git => "git://github.com/bryanlarsen/hobo.git", :branch => 'rails3'
+gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => 'rails3'
 gem "shoulda", :group => :test
 gem "factory_girl", :group => :test
 
